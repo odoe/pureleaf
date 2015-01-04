@@ -8,5 +8,5 @@ See blog post [here](http://odoe.net/blog/purescript-with-leaflet-experiments).
 ```
 npm install
 bower update
-grunt
+npm start
 ```
