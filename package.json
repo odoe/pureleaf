@@ -1,0 +1,17 @@
+{
+  "name": "pureleaf",
+  "version": "0.1.0",
+  "description": "Experiments of PureScript with LeafletJS.",
+  "main": "",
+  "private": true,
+  "author": "Rene Rubalcava",
+  "license": "MIT",
+  "scripts": {
+    "install": "pulp install",
+    "start": "pulp browserify --to index.js -w & lserver -p 1337 -f index.html"
+  },
+  "dependencies": {
+    "local-server": "^0.1.8",
+    "pulp": "^1.5.0"
+  }
+}
