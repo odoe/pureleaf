@@ -78,13 +78,13 @@ var Debug_Trace = require("Debug.Trace");
 var Control_Monad_Eff = require("Control.Monad.Eff");
 var ffi = Data_Foreign_EasyFFI.unsafeForeignFunction;
 var map$prime = ffi([ "s", "" ])("L.map(s)");
-var setView = ffi([ "map", "x", "y", "z", "" ])("map.setView([x, y], z)");
+var setView = ffi([ "map", "coords", "z", "" ])("map.setView(coords, z)");
 var tileLayer = ffi([ "url", "" ])("L.tileLayer(url)");
 var addTo = ffi([ "map", "tileLayer", "" ])("tileLayer.addTo(map)");
 var main = function __do() {
     var _1 = tileLayer("http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png")();
     var _0 = map$prime("map")();
-    setView(_0)(51.505)(-9.0e-2)(13)();
+    setView(_0)([ 51.505, -9.0e-2 ])(13)();
     addTo(_0)(_1)();
     return Debug_Trace.trace("created leaflet map")();
 };

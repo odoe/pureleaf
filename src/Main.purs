@@ -14,8 +14,8 @@ ffi = unsafeForeignFunction
 map' :: forall eff. String -> Eff (m :: Mutable | eff) LMap
 map' = ffi ["s", ""] "L.map(s)"
 
-setView :: forall eff. LMap -> Number -> Number -> Number -> Eff (_ :: Mutable | eff) LMap
-setView = ffi ["map", "x", "y", "z", ""] "map.setView([x, y], z)"
+setView :: forall eff. LMap -> [Number] -> Number -> Eff (_ :: Mutable | eff) LMap
+setView = ffi ["map", "coords", "z", ""] "map.setView(coords, z)"
 
 tileLayer :: forall eff. String -> Eff (_ :: Mutable | eff) TileLayer
 tileLayer = ffi ["url", ""] "L.tileLayer(url)"
@@ -26,6 +26,6 @@ addTo = ffi ["map", "tileLayer", ""] "tileLayer.addTo(map)"
 main = do
   tlayer <- tileLayer "http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
   lmap <- map' "map"
-  setView lmap 51.505 (negate 0.09) 13
+  setView lmap [51.505, (negate 0.09)] 13
   addTo lmap tlayer
   trace $ "created leaflet map"
